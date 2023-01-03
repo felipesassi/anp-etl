@@ -1,0 +1,30 @@
+{
+    "2022_01": {
+        "path": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/precos-semestrais-ca.zip",
+        "name": "sh_2022_01.csv"
+    },
+    "2021_02": {
+        "path": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2021-02.csv",
+        "name": "sh_2021_02.csv"
+    },
+    "2021_01": {
+        "path": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2021-01.csv",
+        "name": "sh_2021_01.csv"
+    },
+    "2020_02": {
+        "path": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2020-02.csv",
+        "name": "sh_2020_02.csv"
+    },
+    "2020_01": {
+        "path": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2020-01.csv",
+        "name": "sh_2020_01.csv"
+    },
+    "2019_02": {
+        "path": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2019-02.csv",
+        "name": "sh_2019_02.csv"
+    },
+    "2019_01": {
+        "path": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/shpc/dsas/ca/ca-2019-01.csv",
+        "name": "sh_2019_01.csv"
+    }
+}

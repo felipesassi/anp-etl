@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "anp-etl"
+version = "0.1.0"
+description = ""
+authors = ["Felipe Sassi <felipesassi@outlook.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "ˆ1.5.2"
+wget = "ˆ3.2"
+pyspark = "ˆ3.3.1"
+loguru = "ˆ0.6.0"
+great-expectations = "ˆ0.15.41"
+python-dotenv = "ˆ0.21.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+start-pipeline = "main:main"

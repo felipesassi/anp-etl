@@ -1,0 +1,4 @@
+FROM postgres:15.1
+
+COPY database/database.sql database/database.sql
+COPY database/setup.sh /docker-entrypoint-initdb.d/

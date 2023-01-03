@@ -1,0 +1,33 @@
+FROM python:3.10
+
+ENV POETRY_VERSION=1.1.13
+ENV DB_PATH=data_warehouse
+
+# ENV PIP_DEFAULT_TIMEOUT=10000
+
+RUN pip install "poetry==$POETRY_VERSION"
+
+RUN apt-get update
+RUN apt install -y openjdk-11-jre-headless
+
+WORKDIR /application
+
+COPY  ./poetry.lock /application/
+COPY ./pyproject.toml /application/
+COPY ./main.py /application/
+COPY ./anp_pipeline /application/anp_pipeline/
+COPY ./jars /application/jars/
+COPY ./.env /application/
+
+RUN mkdir /application/data
+RUN mkdir /application/validation
+
+RUN mkdir /application/data/bronze
+RUN mkdir /application/data/silver
+RUN mkdir /application/data/gold
+
+RUN poetry config installer.parallel false
+
+RUN poetry install --no-interaction --no-ansi -vvv
+
+CMD poetry run start-pipeline

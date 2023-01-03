@@ -1,0 +1,71 @@
+version: '3.5'
+
+services:
+
+  postgres:
+    container_name: data_warehouse
+    build: 
+      context: .
+      dockerfile: Dockerfile.database
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-anp_data_warehouse}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - net
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: data_warehouse_admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - net
+    restart: unless-stopped
+
+  grafana:
+    container_name: dashboard
+    build: 
+      context: .
+      dockerfile: Dockerfile.dashboard
+    environment:
+      GF_SECURITY_ADMIN_USER: anp
+      GF_SECURITY_ADMIN_PASSWORD: anp
+    ports:
+      - "3000:3000"
+    networks:
+      - net
+    restart: unless-stopped
+
+  spark:
+    container_name: application
+    build: 
+      context: .
+      dockerfile: Dockerfile.application
+    volumes:
+       - $PWD/data:/application/data
+       - $PWD/validation:/application/validation
+    networks:
+      - net
+    depends_on:
+      - "postgres"
+
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:

@@ -1,0 +1,6 @@
+FROM grafana/grafana-enterprise
+
+COPY ./dashboard/dashboard.yml /etc/grafana/provisioning/dashboards/
+COPY ./dashboard/datasource.yml /etc/grafana/provisioning/datasources/
+
+COPY ./dashboard/report.json /var/lib/grafana/dashboards/
