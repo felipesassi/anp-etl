@@ -3,8 +3,6 @@ FROM python:3.10
 ENV POETRY_VERSION=1.1.13
 ENV DB_PATH=data_warehouse
 
-# ENV PIP_DEFAULT_TIMEOUT=10000
-
 RUN pip install "poetry==$POETRY_VERSION"
 
 RUN apt-get update
@@ -15,7 +13,7 @@ WORKDIR /application
 COPY  ./poetry.lock /application/
 COPY ./pyproject.toml /application/
 COPY ./main.py /application/
-COPY ./anp_pipeline /application/anp_pipeline/
+COPY ./anp_etl /application/anp_etl/
 COPY ./jars /application/jars/
 COPY ./.env /application/
 
