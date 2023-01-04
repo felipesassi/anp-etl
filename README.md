@@ -176,6 +176,57 @@ To run the ETL pipeline, outside a docker container, you need to run the followi
 poetry run start-pipeline
 ```
 
+# Folder structure
+
+```
+├── Dockerfile.application 
+├── Dockerfile.dashboard
+├── Dockerfile.database
+├── README.md
+├── anp_etl
+│   ├── __init__.py
+│   ├── catalog
+│   │   └── tables.json \\ File with paths to download the tables
+│   ├── download.py
+│   ├── expectations.py \\ File with the GE expectations
+│   ├── extract.py      \\ Extract (E) functions
+│   ├── load.py         \\ File with load functions
+│   ├── shared.py      
+│   ├── transform.py    \\ Transform (T) functions
+│   └── validation.py   \\ GE functions
+├── dashboard
+│   ├── dashboard.yml   \\ Grafana instructions to load the saved dashboard
+│   ├── datasource.yml  \\ Grafana data souce
+│   └── report.json     \\ Grafana saved dashboard
+├── data
+│   ├── bronze
+│   ├── gold
+│   │   ├── anp
+│   │   └── gas_stations
+│   └── silver
+│       └── anp_raw
+├── database
+│   ├── database.sql   \\ Database init (with code to create empty tables)
+│   └── setup.sh       \\ File to setup the databse when the container starts
+├── docker-compose.yml
+├── jars
+│   └── postgresql-42.5.1.jar
+├── main.py            \\ Main file
+├── poetry.lock
+├── pyproject.toml
+├── static
+├── tests
+│   ├── __init__.py
+│   └── test_anp_pipeline.py
+└── validation        \\ Folder used by GE to save the validation data
+    ├── checkpoints
+    ├── data_docs
+    │   └── local_site \\ GE validation site
+    ├── expectations
+    ├── profilers
+```
+
+
 # TODO
 
 The next step is to run all the pipeline inside an orchestration tool like Apache Airflow.
