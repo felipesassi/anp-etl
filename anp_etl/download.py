@@ -8,7 +8,7 @@ import pandas as pd
 
 def get_tables_to_download():
 
-    return pd.read_json("anp_pipeline/catalog/tables.json", orient="index")
+    return pd.read_json("anp_etl/catalog/tables.json", orient="index")
     
 
 def download_raw_data(tables, i):
