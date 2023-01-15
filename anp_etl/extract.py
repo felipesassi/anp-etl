@@ -31,18 +31,11 @@ def select_cols_and_cast_types_to_ingestion(input_path, output_path):
         "Valor de Compra": T.DoubleType(),
         "Valor de Venda": T.DoubleType(),
     }
-    
+
     for col in col_types:
         df = df.withColumn(col, F.col(col).cast(col_types[col]))
 
     df = df.withColumn("Year", F.year("Data da Coleta"))
     df = df.withColumn("Month", F.month("Data da Coleta"))
 
-    (df
-        .write
-        .mode("overwrite")
-        .partitionBy("Year", "Month")
-        .format("parquet")
-        .save(output_path)
-    )
-
+    (df.write.mode("overwrite").partitionBy("Year", "Month").format("parquet").save(output_path))

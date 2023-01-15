@@ -1,6 +1,6 @@
 import pyspark.sql.types as T
 import pyspark.sql.functions as F
-from pyspark.sql.window import Window 
+from pyspark.sql.window import Window
 from anp_etl.shared import get_spark_session
 
 
@@ -15,18 +15,14 @@ def create_lag_price_and_lag_date_table(input_path, output_path):
     df = df.withColumn("Valor de Venda Anterior", F.lag("Valor de Venda").over(w))
     df = df.withColumn("Data da Coleta Anterior", F.lag("Data da Coleta").over(w))
 
-    df = df.withColumn("Dias entre Coletas", F.datediff(F.col("Data da Coleta"), F.col("Data da Coleta Anterior")))
+    df = df.withColumn(
+        "Dias entre Coletas", F.datediff(F.col("Data da Coleta"), F.col("Data da Coleta Anterior"))
+    )
 
     df = df.withColumn("Year", F.year("Data da Coleta"))
     df = df.withColumn("Month", F.month("Data da Coleta"))
 
-    (df
-        .write
-        .mode("overwrite")
-        .partitionBy("Year", "Month")
-        .format("parquet")
-        .save(output_path)
-    )
+    (df.write.mode("overwrite").partitionBy("Year", "Month").format("parquet").save(output_path))
 
 
 def create_gas_stations_table(input_path, output_path):
@@ -57,10 +53,4 @@ def create_gas_stations_table(input_path, output_path):
 
     df = df.select(*cols_to_use)
 
-    (df
-        .write
-        .mode("overwrite")
-        .format("parquet")
-        .save(output_path)
-    )
-
+    (df.write.mode("overwrite").format("parquet").save(output_path))

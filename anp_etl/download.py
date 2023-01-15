@@ -9,7 +9,7 @@ import pandas as pd
 def get_tables_to_download():
 
     return pd.read_json("anp_etl/catalog/tables.json", orient="index")
-    
+
 
 def download_raw_data(tables, i):
 
@@ -51,7 +51,7 @@ def download_raw_data(tables, i):
 def unzip_file(input_file, output_file):
 
     with zipfile.ZipFile(input_file, "r") as file:
-        
+
         file.extractall(output_file)
         unziped_file_name = file.namelist()
 

@@ -2,7 +2,10 @@ from ruamel import yaml
 import great_expectations as gx
 from great_expectations.core.batch import RuntimeBatchRequest
 from great_expectations.data_context import BaseDataContext
-from great_expectations.data_context.types.base import DataContextConfig, FilesystemStoreBackendDefaults
+from great_expectations.data_context.types.base import (
+    DataContextConfig,
+    FilesystemStoreBackendDefaults,
+)
 from anp_etl.expectations import *
 
 
@@ -25,21 +28,21 @@ def configure_great_expectations_sources(run_test=False):
 
     store_backend_defaults = FilesystemStoreBackendDefaults(root_directory="$PWD/validation/")
 
-    data_docs_config={
+    data_docs_config = {
         "ANP": {
             "class_name": "SiteBuilder",
             "show_how_to_buttons": "false",
             "store_backend": {
                 "class_name": "TupleFilesystemStoreBackend",
-                "base_directory": "$PWD/validation/data_docs/local_site/"
-                }
-            }
+                "base_directory": "$PWD/validation/data_docs/local_site/",
+            },
         }
+    }
 
     data_context_config = DataContextConfig(
         store_backend_defaults=store_backend_defaults,
         checkpoint_store_name=store_backend_defaults.checkpoint_store_name,
-        data_docs_sites=data_docs_config
+        data_docs_sites=data_docs_config,
     )
 
     context = BaseDataContext(project_config=data_context_config)
@@ -55,7 +58,9 @@ def configure_great_expectations_sources(run_test=False):
 
 def get_expectation_suite(context):
 
-    return context.create_expectation_suite(expectation_suite_name="anp_bronze_data_suite", overwrite_existing=True)
+    return context.create_expectation_suite(
+        expectation_suite_name="anp_bronze_data_suite", overwrite_existing=True
+    )
 
 
 def add_expectations_to_context(context):
@@ -101,9 +106,9 @@ def get_batch_request(df, data_asset_name):
     return RuntimeBatchRequest(
         datasource_name="anp_bronze_data_validation",
         data_connector_name="default_runtime_data_connector_name",
-        data_asset_name=data_asset_name,  
+        data_asset_name=data_asset_name,
         batch_identifiers={"batch_id": "default_identifier"},
-        runtime_parameters={"batch_data": df}, 
+        runtime_parameters={"batch_data": df},
     )
 
 
