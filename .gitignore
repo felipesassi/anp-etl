@@ -12,5 +12,6 @@ uncommitted
 
 Year=*
 
-
 _SUCCESS
+
+.mypy_cache
