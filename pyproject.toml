@@ -17,6 +17,7 @@ python-dotenv = "ˆ0.21.0"
 pytest = "^5.2"
 black = "^22.12.0"
 flake8 = "^6.0.0"
+mypy = "^0.991"
 
 [tool.black]
 line-length = 100
