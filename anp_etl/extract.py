@@ -3,7 +3,7 @@ import pyspark.sql.functions as F
 from anp_etl.shared import get_spark_session
 
 
-def select_cols_and_cast_types_to_ingestion(input_path, output_path):
+def select_cols_and_cast_types_to_ingestion(input_path: str, output_path: str) -> None:
 
     spark = get_spark_session()
 
