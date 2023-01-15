@@ -16,9 +16,9 @@ You can find the ANP website [here](https://www.gov.br/anp/pt-br).
 
 # Which files are downloaded?
 
-The folder /catalog has a tables.json file with all routes to use for download data.
+The folder */catalog* has a *tables.json* file with all routes to use for download data.
 
-You can add more routes if you want. The structure of the .json file is the following:
+You can add more routes if you want. The structure of the *.json* file is the following:
 
 ```
 {
@@ -50,7 +50,7 @@ After the download of the raw data a Great Expectations pipeline runs to check t
 
 You can find all the checks in the *expectations.py* file and you can learn more about this module in the oficial documentation [here](https://greatexpectations.io/).
 
-After every download file, a validation runs and saves the results to a .html page which shows all passed (and non passed) checks. You can find this file in the folder validation/data_docs/index.html.
+After every download file, a validation runs and saves the results to a .html page which shows all passed (and non passed) checks. You can find this file in the folder *validation/data_docs/index.html*.
 
 Above, a screenshot of the data quality docs is shown:
 
@@ -75,19 +75,19 @@ The following screenshot shows the dashboard developed:
 
 The /dasboard folder has three files:
 
-- dashboard.yml: a configuration file with the dashboard path;
-- datasource.yml: the data warehouse connection file;
-- report.json: the dashboard developed (exported from Grafana).
+- *dashboard.yml*: a configuration file with the dashboard path;
+- *datasource.yml*: the data warehouse connection file;
+- *report.json*: the dashboard developed (exported from Grafana).
 
 You can read more about this [here](https://grafana.com/docs/grafana/latest/datasources/).
 
 # Environmental variables
 
-A .env file is inside the repository with the environmental variables used by the project. You can change them if you want.
+A *.env* file is inside the repository with the environmental variables used by the project. You can change them if you want.
 
 # Data warehouse
 
-A start script is used to create the tables in the data warehouse. This script is copied to the /docker-entrypoint-initdb.d folder to run when the PostgreSQL container starts.
+A start script is used to create the tables in the data warehouse. This script is copied to the */docker-entrypoint-initdb.d* folder to run when the PostgreSQL container starts.
 
 In the folder */database* you can check for the startup script and for the database creation script, that creates two tables:
 
@@ -229,4 +229,6 @@ poetry run start-pipeline
 
 # TODO
 
-The next step is to run all the pipeline inside an orchestration tool like Apache Airflow.
+- Add [pre-commit](https://pre-commit.com/) hooks;
+- The next step is to run all the pipeline inside an orchestration tool like [Apache Airflow](https://airflow.apache.org/).
+
