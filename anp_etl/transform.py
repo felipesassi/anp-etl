@@ -1,4 +1,3 @@
-import pyspark.sql.types as T
 import pyspark.sql.functions as F
 from pyspark.sql.window import Window
 from anp_etl.shared import get_spark_session

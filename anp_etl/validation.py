@@ -6,7 +6,12 @@ from great_expectations.data_context.types.base import (
     DataContextConfig,
     FilesystemStoreBackendDefaults,
 )
-from anp_etl.expectations import *
+from anp_etl.expectations import (
+    expectation_to_check_categorical_cols_values,
+    expectation_to_check_null_values,
+    expectation_to_check_table_rows,
+    expectation_to_check_columns_order,
+)
 
 
 spark = gx.core.util.get_or_create_spark_application()

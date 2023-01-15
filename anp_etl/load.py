@@ -1,4 +1,3 @@
-from loguru import logger
 from anp_etl.shared import get_spark_session
 from dotenv import load_dotenv
 import os
