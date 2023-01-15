@@ -3,7 +3,7 @@ from pyspark.sql.window import Window
 from anp_etl.shared import get_spark_session
 
 
-def create_lag_price_and_lag_date_table(input_path, output_path):
+def create_lag_price_and_lag_date_table(input_path: str, output_path: str) -> None:
 
     spark = get_spark_session()
 
@@ -24,7 +24,7 @@ def create_lag_price_and_lag_date_table(input_path, output_path):
     (df.write.mode("overwrite").partitionBy("Year", "Month").format("parquet").save(output_path))
 
 
-def create_gas_stations_table(input_path, output_path):
+def create_gas_stations_table(input_path: str, output_path: str) -> None:
 
     spark = get_spark_session()
 
