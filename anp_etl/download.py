@@ -6,12 +6,12 @@ from loguru import logger
 import pandas as pd
 
 
-def get_tables_to_download():
+def get_tables_to_download() -> pd.DataFrame:
 
     return pd.read_json("anp_etl/catalog/tables.json", orient="index")
 
 
-def download_raw_data(tables, i):
+def download_raw_data(tables: pd.DataFrame, i: int) -> str:
 
     file = tables.iloc[i]
 
@@ -48,7 +48,7 @@ def download_raw_data(tables, i):
     return f"data/bronze/{file_name}"
 
 
-def unzip_file(input_file, output_file):
+def unzip_file(input_file: str, output_file: str) -> str:
 
     with zipfile.ZipFile(input_file, "r") as file:
 
