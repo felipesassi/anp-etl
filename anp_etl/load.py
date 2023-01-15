@@ -6,12 +6,12 @@ import os
 load_dotenv()
 
 
-def data_warehouse_path():
+def data_warehouse_path() -> str:
 
     return os.environ.get("DB_PATH", "localhost")
 
 
-def load_anp_data_to_dw(input_path):
+def load_anp_data_to_dw(input_path: str) -> None:
 
     spark = get_spark_session()
 
@@ -33,7 +33,7 @@ def load_anp_data_to_dw(input_path):
     )
 
 
-def load_gas_stations_data_to_dw(input_path):
+def load_gas_stations_data_to_dw(input_path: str) -> None:
 
     spark = get_spark_session()
 
