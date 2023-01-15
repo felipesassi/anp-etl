@@ -229,5 +229,6 @@ poetry run start-pipeline
 
 # TODO
 
-- The next step is to run all the pipeline inside an orchestration tool like Apache Airflow.
+- Add [pre-commit](https://pre-commit.com/) hooks;
+- The next step is to run all the pipeline inside an orchestration tool like [Apache Airflow](https://airflow.apache.org/).
 
