@@ -54,8 +54,8 @@ services:
       context: .
       dockerfile: Dockerfile.application
     volumes:
-       - $PWD/data:/application/data
-       - $PWD/validation:/application/validation
+       - ./data:/application/data
+       - ./validation:/application/validation
     networks:
       - net
     depends_on:
